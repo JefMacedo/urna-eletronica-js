@@ -7,6 +7,8 @@ let numeros = document.querySelector('.d-1-3');
 
 let etapaAtual = 0;
 let numero = '';
+let votoBranco = false;
+
 function comecarEtapa() {
     let etapa = etapas[etapaAtual];
 
@@ -85,13 +87,51 @@ function clicou(n){
     }
 }
 function branco(){
-    alert("Clicou em BRANCO");
+
+    if(numero === ''){
+        votoBranco = true;
+        seuVotoPara.style.display = 'block';
+        aviso.style.display = 'block';
+        numeros.innerHTML ='';
+        descricao.innerHTML = '<div class="aviso-grande pisca">VOTO: BRANCO</div>';
+    } else {
+        alert("Para votar em branco não pode digitar nenhum numero");
+    }
+
+    // para rodar o voto em branco sem verificação de numero vazio
+    // numero = '';
+    // votoBranco = true;
+    // seuVotoPara.style.display = 'block';
+    // aviso.style.display = 'block';
+    // numeros.innerHTML ='';
+    // descricao.innerHTML = '<div class="aviso-grande pisca">VOTO: BRANCO</div>';
+    // lateral.innerHTML = '';
+
 }
 function corrige(){
-    alert("Clicou em CORRIGE");
+    comecarEtapa();
 }
 function confirma(){
-    alert("Clicou em CONFIRMA");
+    let etapa = etapas[etapaAtual];
+
+    let votoConfirmado = false;
+
+    if(votoBranco === true) {
+        votoConfirmado = true;
+        console.log("Confirmado voto BRANCO");
+    } else if(numero.length === etapa.numeros) {
+        votoConfirmado = true;
+        console.log("Confirmado voto " + numero);
+    }
+
+    if (votoConfirmado){
+        etapaAtual++;
+        if(etapas[etapaAtual] !== undefined){
+            comecarEtapa();
+        } else {
+            console.log("fim");
+        }
+    }
 }
 
 comecarEtapa();
