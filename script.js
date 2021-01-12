@@ -32,17 +32,21 @@ function comecarEtapa() {
 }
 
 function atualizaInterface() {
-
+ alert("Terminou de digitar o voto");
 }
 
 function clicou(n){
     let elNumero = document.querySelector('.numero.pisca');
     if(elNumero !== null){
         elNumero.innerHTML = n;
-        numero=`${numero}${n}`;
+        numero= `${numero}${n}`;
 
         elNumero.classList.remove('pisca');
-        elNumero.nextElementSibling.classList.add('pisca');
+        if(elNumero.nextElementSibling != null){
+            elNumero.nextElementSibling.classList.add('pisca');
+        }else{
+            atualizaInterface();
+        }
     }
 }
 function branco(){
