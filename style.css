@@ -147,3 +147,9 @@ body {
     border-top: 2px solid #000000;
     padding-left: 10px;
 }
+
+.aviso-grande {
+    margin-top: 20px;
+    font-size: 40px;
+    font-weight: bold;
+}
